@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "UserManagementApp"
+rootProject.name = "testing-viewmodel"
 include ':app'
