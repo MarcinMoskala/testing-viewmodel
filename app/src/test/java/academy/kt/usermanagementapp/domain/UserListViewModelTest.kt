@@ -82,6 +82,9 @@ class UserListViewModelTest {
 
     @Test
     fun `when removing user, should not display loading`() {
+    }
 
+    @Test
+    fun `should hide error`() {
     }
 }
