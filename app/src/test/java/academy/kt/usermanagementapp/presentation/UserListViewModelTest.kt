@@ -1,21 +1,11 @@
-package academy.kt.usermanagementapp.domain
+package academy.kt.usermanagementapp.presentation
 
 import academy.kt.usermanagementapp.MainCoroutineRule
-import academy.kt.usermanagementapp.TestData.users1
-import academy.kt.usermanagementapp.TestData.users2
-import academy.kt.usermanagementapp.data.network.ApiException
 import academy.kt.usermanagementapp.fakes.FakeDelayedUserRepository
-import academy.kt.usermanagementapp.fakes.FakeDelayedUserRepository.Companion.ADD_USER_DELAY
-import academy.kt.usermanagementapp.fakes.FakeDelayedUserRepository.Companion.REMOVE_USER_DELAY
-import academy.kt.usermanagementapp.fakes.FakeDelayedUserRepository.Companion.FETCH_USERS_DELAY
-import academy.kt.usermanagementapp.model.AddUser
-import academy.kt.usermanagementapp.model.User
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotEquals
 
 
 @OptIn(ExperimentalCoroutinesApi::class)

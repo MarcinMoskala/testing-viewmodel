@@ -1,15 +1,9 @@
-package academy.kt.usermanagementapp
+package academy.kt.usermanagementapp.ui
 
 import academy.kt.usermanagementapp.data.network.ApiException
-import academy.kt.usermanagementapp.domain.UserListViewModel
 import academy.kt.usermanagementapp.model.AddUser
 import academy.kt.usermanagementapp.model.User
-import academy.kt.usermanagementapp.ui.theme.UserManagementAppTheme
 import android.annotation.SuppressLint
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
@@ -29,41 +23,9 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import dagger.hilt.android.AndroidEntryPoint
-
-@AndroidEntryPoint
-class MainActivity : ComponentActivity() {
-    private val userListViewModel: UserListViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            UserManagementAppTheme {
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    val usersList by userListViewModel.usersList.collectAsState()
-                    val showLoading by userListViewModel.showLoading.collectAsState()
-                    val error by userListViewModel.error.collectAsState()
-
-                    ErrorDialog(error, userListViewModel::hideError)
-
-                    UserList(
-                        usersList,
-                        removeUser = userListViewModel::removeUser,
-                        refresh = userListViewModel::refresh,
-                        addUser = userListViewModel::addUser
-                    )
-
-                    if (showLoading) {
-                        ProgressIndicator()
-                    }
-                }
-            }
-        }
-    }
-}
 
 @Composable
-private fun ProgressIndicator() {
+fun ProgressIndicator() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -76,7 +38,7 @@ private fun ProgressIndicator() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun UserList(users: List<User>, removeUser: (Int) -> Unit, refresh: () -> Unit, addUser: (AddUser) -> Unit) {
+fun UserList(users: List<User>, removeUser: (Int) -> Unit, refresh: () -> Unit, addUser: (AddUser) -> Unit) {
     val (activeRemoveUser, setActiveRemoveUser) = remember { mutableStateOf<User?>(null) }
     val (activeAddUser, setActiveAddUser) = remember { mutableStateOf(false) }
 
@@ -228,7 +190,7 @@ private fun AddUserDialog(activeAddUser: Boolean, setActiveAddUser: (Boolean) ->
 
 
 @Composable
-private fun ErrorDialog(error: Throwable?, hideError: () -> Unit) {
+fun ErrorDialog(error: Throwable?, hideError: () -> Unit) {
     if (error != null) {
         AlertDialog(
             onDismissRequest = {},

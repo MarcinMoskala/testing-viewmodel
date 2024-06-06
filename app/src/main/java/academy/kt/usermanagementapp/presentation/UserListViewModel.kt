@@ -1,4 +1,4 @@
-package academy.kt.usermanagementapp.domain
+package academy.kt.usermanagementapp.presentation
 
 import academy.kt.usermanagementapp.data.network.UserRepository
 import academy.kt.usermanagementapp.model.AddUser
